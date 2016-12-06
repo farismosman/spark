@@ -1,0 +1,14 @@
+sparkmaster:
+  image: "farismosman/spark"
+  container_name: masterspark
+  net: "sparknetwork"
+  ports:
+    - "8080:8080"
+  command: "/usr/bin/supervisord --configuration=/opt/spark/conf/master.conf"
+
+sparkslave:
+  image: "farismosman/spark"
+  net: "sparknetwork"
+  ports:
+    - "8081:8081"
+  command: "/usr/bin/supervisord --configuration=/opt/spark/conf/slave.conf"
