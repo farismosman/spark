@@ -10,7 +10,7 @@ RUN echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-s
 RUN echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections
 
 # installing java and supervisor
-RUN apt-get update && apt-get install -y oracle-java8-installer supervisor dnsutils
+RUN apt-get update && apt-get install -y oracle-java8-installer supervisor
 
 # downloading and unpacking Spark 1.6.3 [prebuilt for Hadoop 2.6+ and scala 2.10]
 RUN wget "http://d3kbcqa49mib13.cloudfront.net/spark-1.6.3-bin-hadoop2.6.tgz"
@@ -22,6 +22,8 @@ RUN rm -f spark-1.6.3-bin-hadoop2.6.tgz
 ADD master.conf /opt/spark/conf/master.conf
 ADD slave.conf /opt/spark/conf/slave.conf
 ADD spark-defaults.conf /opt/spark/conf/spark-defaults.conf
+
+RUN ln -s /opt/spark /usr/local/spark
 
 # exposing port 808* to access the Spark UI
 EXPOSE 8080
