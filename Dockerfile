@@ -10,7 +10,7 @@ RUN echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-s
 RUN echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections
 
 # installing java and supervisor
-RUN apt-get update && apt-get install -y oracle-java8-installer supervisor
+RUN apt-get update && apt-get install -y oracle-java8-installer supervisor dnsutils
 
 # downloading and unpacking Spark 1.6.3 [prebuilt for Hadoop 2.6+ and scala 2.10]
 RUN wget "http://d3kbcqa49mib13.cloudfront.net/spark-1.6.3-bin-hadoop2.6.tgz"
